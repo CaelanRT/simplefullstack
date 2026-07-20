@@ -12,12 +12,12 @@ const registerController = async (req, res) => {
     }
 
     // check if the user is in the db - query
-    const querySyntax = 'SELECT * FROM users WHERE user_id = $1';
+    const checkQuerySyntax = 'SELECT * FROM users WHERE user_id = $1';
     const queryVariable = [user_id];
     let inDB = false;
 
     try {
-        const result = await db.query(querySyntax, queryVariable);
+        const result = await db.query(checkQuerySyntax, queryVariable);
 
         if (result.rowCount === 1) {
             inDB = true;
@@ -33,11 +33,19 @@ const registerController = async (req, res) => {
     }
 
     // add the user to the db
+    const addQuerySyntax = 'INSERT INTO users (user_id) VALUES ($1)';
 
+    try {
+        const result = await db.query(addQuerySyntax, queryVariable);
+        
+    } catch (error) {
+        console.log(error);
+        
+    }
 
 
     // return success
-    res.status(200).json({'mgs':'all ok!'});
+    res.status(200).json({'mgs':`User added with ID: ${user_id}`});
 }
 
 module.exports = {
