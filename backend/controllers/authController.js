@@ -11,15 +11,15 @@ const registerController = async (req, res) => {
         return res.status(400).json({'msg':'Bad Request: Missing user_id'});
     }
 
+    // check if the user is in the db - query
     const querySyntax = 'SELECT * FROM users WHERE user_id = $1';
+    const queryVariable = [user_id];
     let inDB = false;
 
     try {
-        const {row} = await db.query(querySyntax, user_id);
+        const result = await db.query(querySyntax, queryVariable);
 
-        console.log(row);
-
-        if (row) {
+        if (result.rowCount === 1) {
             inDB = true;
         }
         
@@ -32,6 +32,11 @@ const registerController = async (req, res) => {
         return res.status(400).json({'msg':'user already in DB'});
     }
 
+    // add the user to the db
+
+
+
+    // return success
     res.status(200).json({'mgs':'all ok!'});
 }
 
