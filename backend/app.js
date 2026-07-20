@@ -2,6 +2,7 @@
 require('dotenv').config();
 const express = require("express");
 const cors = require("cors")
+const router = require('./routes/router');
 
 // create the app
 const app = express();
@@ -17,6 +18,9 @@ const port = process.env.port || 3000;
 app.get("/", (req, res) => {
     res.send('hello world!');
 })
+
+// router
+app.use("/api/v1", router);
 
 // server listener
 app.listen(port, () => {
