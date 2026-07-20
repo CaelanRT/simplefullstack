@@ -1,4 +1,4 @@
-const {POOL} = require('pg');
+const {Pool} = require('pg');
 
 const pool = ({
     connectionString: process.env.DATABASE_CONNECTION,
@@ -6,6 +6,4 @@ const pool = ({
     idleTimeoutMillis: 30000,
 })
 
-module.exports = {
-    query: (text, params) => pool.query(text, params)
-};
+module.exports = pool;
