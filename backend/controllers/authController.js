@@ -1,4 +1,5 @@
 const db = require('../db/db');
+const {getAuth} = require('@clerk/express')
 
 // register but just checking if the db works!
 const registerController = async (req, res) => {
@@ -48,6 +49,18 @@ const registerController = async (req, res) => {
     res.status(200).json({'mgs':`User added with ID: ${user_id}`});
 }
 
+const protectedController = (req, res) => {
+
+    const auth = getAuth(req);
+
+    if(!auth.isAuthenticated) {
+        return res.status(401).json({"msg":"user not authenticated"});
+    }
+
+    res.status(200).json({"msg":"got to protected"});
+}
+
 module.exports = {
-    registerController
+    registerController,
+    protectedController
 }
