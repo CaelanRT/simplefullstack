@@ -49,17 +49,26 @@ const registerController = async (req, res) => {
     res.status(200).json({'mgs':`User added with ID: ${user_id}`});
 }
 
-const protectedController = (req, res) => {
+const protectedController = async (req, res) => {
 
-    const auth = getAuth(req);
+    // const auth = getAuth(req);
 
-    if(!auth.isAuthenticated) {
-        return res.status(401).json({"msg":"user not authenticated"});
+    // if(!auth.isAuthenticated) {
+    //     return res.status(401).json({"msg":"user not authenticated"});
+    // }
+
+    const dashboardQuery = 'SELECT * FROM sales';
+
+    let result = {};
+
+    try {
+        result = await db.query(dashboardQuery);
+    } catch (error) {
+        console.log(error);
+        
     }
 
-    
-
-    res.status(200).json({"msg":"got to protected"});
+    res.status(200).json(result.rows);
 }
 
 module.exports = {
