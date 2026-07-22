@@ -10,7 +10,11 @@ const registerController = async (req, res) => {
         const evt = await verifyWebhook(req);
 
         const {id} = evt.data;
-        const email = evt.data.email_address[0].email_address;
+
+        // console.log(evt.data.email_addresses[0].email_address);
+
+        const email = evt.data.email_addresses[0].email_address;
+        
         const eventType = evt.type;
 
         console.log(`Webhook received with ID: ${id} and event type of ${eventType}`);

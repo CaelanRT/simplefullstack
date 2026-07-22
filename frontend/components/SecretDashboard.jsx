@@ -7,7 +7,7 @@ const SecretDashboard = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://during-cosmetics-mandolin.ngrok-free.dev/api/v1/protected');
+      const response = await axios.get('http://localhost:3000/api/v1/protected');
 
       setData(response.data);
       

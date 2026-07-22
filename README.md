@@ -8,3 +8,6 @@ For your app to connect, you need to grant connect, select, insert, update, dele
 To create the database, run the following command `psql -U caelanrt -d simplefullstack -f db/schema.sql`
 
 To see the sales table, run the following command `psql -U caelanrt -d simplefullstack -f db/seed.sql`
+
+## Backend
+The backend is served through nGrok using the following command: ngrok http 3000, that is so that you can have the webhook route accurately receiving data from Clerk to sync the database!
