@@ -7,11 +7,9 @@ const SecretDashboard = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('localhost:3000/api/v1/protected');
+      const response = await axios.get('http://localhost:3000/api/v1/protected');
 
-      setData(response);
-
-      console.log(response);
+      setData(response.data);
       
 
     } catch (error) {
@@ -21,7 +19,7 @@ const SecretDashboard = () => {
   }
 
   useEffect(()=> {
-
+    fetchData();
   }, [])
 
 
