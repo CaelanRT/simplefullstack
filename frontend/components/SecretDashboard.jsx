@@ -1,15 +1,43 @@
 import { useState, useEffect } from "react"
-const axios = require('axios');
+import axios from 'axios';
 
 
 const SecretDashboard = () => {
-    const [data, setData] = useState({});
+    const [data, setData] = useState([]);
 
-    
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('localhost:3000/api/v1/protected');
+
+      setData(response);
+
+      console.log(response);
+      
+
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+
+  useEffect(()=> {
+
+  }, [])
 
 
   return (
-    <div>SecretDashboard</div>
+    <>
+      <div>SecretDashboard</div>
+      {data.map((sale)=> {
+        return (
+          <>
+            <h3>{sale.country}</h3>
+            <h5>{sale.total_sales}</h5>
+          </>
+        )
+      })}
+    </>
+    
   )
 }
 export default SecretDashboard

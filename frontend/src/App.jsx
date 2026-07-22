@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import {Show, SignInButton, SignUpButton, UserButton} from '@clerk/react'
+import SecretDashboard from '../components/SecretDashboard'
 
 
 import './App.css'
@@ -18,6 +19,12 @@ function App() {
           <UserButton />
         </Show>
       </header>
+      <main>
+        <Show when='signed-out'></Show>
+        <Show when='signed-in'>
+          <SecretDashboard />
+        </Show>
+      </main>
     </>
   )
 }
