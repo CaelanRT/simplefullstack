@@ -57,6 +57,8 @@ const protectedController = (req, res) => {
         return res.status(401).json({"msg":"user not authenticated"});
     }
 
+    
+
     res.status(200).json({"msg":"got to protected"});
 }
 
