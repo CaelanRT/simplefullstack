@@ -1,6 +1,8 @@
 CREATE TABLE users (
     id text PRIMARY KEY,
-    name text
+    email text,
+    created_at TIMESTAMP,
+    deleted BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE sales (
