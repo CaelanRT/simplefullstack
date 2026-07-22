@@ -1,7 +1,7 @@
 CREATE TABLE users (
     id text PRIMARY KEY,
     email text,
-    created_at TIMESTAMP,
+    created_at TIMESTAMP DEFAULT NOW(),
     deleted BOOLEAN DEFAULT FALSE
 );
 
